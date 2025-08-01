@@ -2,5 +2,6 @@
 const { withExpo } = require('@expo/next-adapter');
 
 module.exports = withExpo({
-  projectRoot: __dirname,
+  // Удаляем projectRoot — он больше не нужен
+  reactStrictMode: true,
 });
