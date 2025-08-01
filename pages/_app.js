@@ -1,13 +1,24 @@
 // pages/_app.js
-import React from 'react';
-import { AppRegistry } from 'react-native';
-import { name as appName } from '../app.json';
-import App from '../App';
+import { useEffect } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import '../global.css'; // если у вас есть стили, подключите их
 
-AppRegistry.registerComponent(appName, () => App);
-const { getApplication } = AppRegistry.getApplication(appName);
+export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
 
-export default function MainApp() {
-  const { element } = getApplication();
-  return element;
+  useEffect(() => {
+    // можно вставить логику инициализации (например, аналитика)
+  }, [router.pathname]);
+
+  return (
+    <>
+      <Head>
+        <meta charSet="utf-8" />
+        <title>DiscountHub</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
